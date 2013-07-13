@@ -6,12 +6,28 @@ package com.appathon.letsgo;
 
 public class User {
 
-	String Name;
-	String PhoneNumber;
+	private String Name;
+	private String PhoneNumber;
 	
 	public User(String person, String number)
 	{
 		Name = person;
 		PhoneNumber = number;
+	}
+	
+	public String getName()
+	{
+		return Name;
+	}
+	
+	public String getPhoneNumber()
+	{
+		return PhoneNumber;
+	}
+	
+	public boolean setPhoneNumber(String newNumber)
+	{
+		PhoneNumber = newNumber;
+		return true;
 	}
 }
