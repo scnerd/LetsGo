@@ -14,6 +14,9 @@ public class AttendanceList extends Activity {
 		setContentView(R.layout.activity_attendance_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		User[] attns = HTTPHelper.GetAttendees(savedInstanceState.getInt("event"));
+		
 	}
 
 	/**
