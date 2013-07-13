@@ -18,9 +18,16 @@ import android.util.Log;
 public class HTTPHelper {
 
 	//Need values
-	private static final String URL_GET_USER = "", URL_DEL_USER = "",
-			URL_CRT_USER = "", URL_GET_EVNT = "", URL_DEL_EVNT = "",
-			URL_CRT_EVNT = "", URL_ATN_EVNT = "", URL_GET_EVNT_ATNS = "";
+	private static final String
+            URL_GET_USER = "http://mphox.scripts.mit.edu/LetsGoScripts/addUser.php",
+            URL_DEL_USER = "",
+			URL_CRT_USER = "http://mphox.scripts.mit.edu/LetsGoScripts/addUser.php",
+            URL_GET_EVNT = "",
+            URL_DEL_EVNT = "",
+			URL_CRT_EVNT = "",
+            URL_ATN_EVNT = "",
+            URL_GET_EVNT_ATNS = "http://mphox.scripts.mit.edu/LetsGoScripts/getAttendeesFromEvent.php",
+            URL_GET_ALL_EVNT = "http://mphox.scripts.mit.edu/LetsGoScripts/getAllEvents.php";
 	
 	public static final int
 		ST_ABSENT = 0,
@@ -79,6 +86,7 @@ public class HTTPHelper {
 	/*
 	 * Sends {SID: String}
 	 * Expects {NickName: String} {Number: String} {SID: String}
+	 * Returns {Query0 {NickName: String, Number: String, SID: String} }
 	 */
 	// returns the User object corresponding to the sid
 	public static User GetUser(String sid) {
