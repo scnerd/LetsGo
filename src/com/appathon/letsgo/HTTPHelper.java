@@ -77,14 +77,15 @@ public class HTTPHelper {
 	}
 
 	/*
-	 * Expects users: [ {nickName: String} {number: String} {sid: int} ]
+	 * Sends {SID: String}
+	 * Expects {NickName: String} {Number: String} {SID: String}
 	 */
 	// returns the User object corresponding to the sid
 	public static User GetUser(String sid) {
 		JSONObject reader;
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("SID", Integer.valueOf(sid).toString()));
+			params.add(new BasicNameValuePair("SID", sid));
 			reader = getJSONFromUrl(URL_GET_USER, params);
 
 			return new User(reader.getString("NickName"),
@@ -97,6 +98,10 @@ public class HTTPHelper {
 
 	// deletes the User object corresponding to the sid
 	// returns true if User was deleted successfully, false otherwise
+	/*
+	 * Sends {SID: String}
+	 * Expects { anything if successful, nothing if failed }
+	 */
 	public static boolean DeleteUser(String sid) {
 		JSONObject reader;
 
@@ -111,6 +116,10 @@ public class HTTPHelper {
 		return false;
 	}
 
+	/*
+	 * Sends {SID: String} {NickName: String} {Number: String}
+	 * Expects {anything if successful, nothing if failed}
+	 */
 	public static boolean CreateUser(User user) {
 		JSONObject reader;
 
@@ -127,6 +136,10 @@ public class HTTPHelper {
 		return false;
 	}
 
+	/*
+	 * Sends {ID: int}
+	 * Expects {ID: int} {Start: String (date)} {Location: String} {Cost: String} {POC: String}
+	 */
 	public static com.appathon.letsgo.Event GetEvent(int eventID) {
 		JSONObject reader;
 		try {
@@ -142,6 +155,10 @@ public class HTTPHelper {
 		return Event.NO_EVENT;
 	}
 
+	/*
+	 * Sends {ID: int}
+	 * Expects {anything if successful, nothing if failed}
+	 */
 	public static boolean DeleteEvent(int eventID) {
 		JSONObject reader;
 
@@ -156,6 +173,10 @@ public class HTTPHelper {
 		return false;
 	}
 
+	/*
+	 * Sends {ID: int} {Start: String} {Location: String} {Cost: String} {POC: String}
+	 * Expects {anything if successful, nothing if failed}
+	 */
 	public static boolean CreateEvent(Event event) {
 		JSONObject reader;
 
@@ -174,13 +195,17 @@ public class HTTPHelper {
 		return false;
 	}
 
+	/*
+	 * Sends {ID: int} {SID: String} {Driving: int}
+	 * Expects {anything if successful, nothing if failed}
+	 */
 	public static boolean AttendEvent(Event event, User user, int State) {
 		JSONObject reader;
 
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("ID", Integer.valueOf(event.getID()).toString()));
-			params.add(new BasicNameValuePair("SID", Integer.valueOf(user.getSID()).toString()));
+			params.add(new BasicNameValuePair("SID", user.getSID()));
 			params.add(new BasicNameValuePair("Driving", Integer.valueOf(State).toString()));
 			reader = getJSONFromUrl(URL_ATN_EVNT, params);
 			if(reader.length() > 0)
@@ -190,6 +215,10 @@ public class HTTPHelper {
 		return false;
 	}
 	
+	/*
+	 * Sends {ID: int}
+	 * Expects {Attendees: [ {SID: String} ] }
+	 */
 	public static User[] GetAttendees(int eventID) {
 		JSONObject reader;
 		try {
