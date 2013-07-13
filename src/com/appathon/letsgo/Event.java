@@ -20,30 +20,40 @@ public class Event {
 		Attendees = new ArrayList<User>();
 	}
 	
-	boolean addAttendee(User attendee)
+	public boolean addAttendee(User attendee)
 	{
 		return Attendees.add(attendee);
 	}
 	
-	boolean setTime(Time time)
+	public boolean setTime(Time time)
 	{
 		StartTime = time;
 		return true;
 	}
 	
-	boolean setDate(Date day)
+	public boolean setDate(Date day)
 	{
 		date = day;
 		return true;
 	}
 	
-	int getID()
+	public int getID()
 	{
 		return ID;
 	}
 	
-	Time getTime()
+	public Time getTime()
 	{
 		return StartTime;
+	}
+	
+	public Date getDate()
+	{
+		return date;
+	}
+	
+	public ArrayList<User> getAttendees()
+	{
+		return Attendees;
 	}
 }
