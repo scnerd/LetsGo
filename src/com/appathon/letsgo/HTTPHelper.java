@@ -16,6 +16,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -79,7 +80,16 @@ public class HTTPHelper {
 
 	// returns the User object corresponding to the sid
 	public User GetUser(int sid) {
-		return null;
+		JSONObject reader = getJSONFromUrl(URL_GET_USER);
+		
+		try {
+			JSONArray users = reader.getJSONArray("users");
+			for(int i = 0; i < users.length(); i++)
+				if(users.getJSONObject(i).getInt("sid") == sid)
+					return new User(reader.getString("nickName"), reader.getString("number"), reader.getInt("sid"));
+		} catch (JSONException e) {
+		}
+		return User.NO_ONE;
 	}
 
 	// deletes the User object corresponding to the sid

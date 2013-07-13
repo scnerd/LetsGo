@@ -10,6 +10,8 @@ public class User {
 	private String NickName;
 	private String PhoneNumber;
 	
+	public final static User NO_ONE = new User("Does not exist", "(000) 000-0000", 0);
+	
 	public User(String nickName, String number, int sid)
 	{
 		NickName = nickName;
