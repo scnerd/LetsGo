@@ -12,15 +12,15 @@ import android.text.format.Time;
 public class Event {
 	
 	private int ID;
-	private Time StartTime;
-	private Date date;
+	private Date StartTime;
 	private ArrayList<User> Attendees;
 	
-	public Event(int id, Time start, Date day)
+	public static final Event NO_EVENT = new Event(0, new Date(0));
+	
+	public Event(int id, Date start)
 	{
 		ID = id;
 		StartTime = start;
-		date = day;
 		Attendees = new ArrayList<User>();
 	}
 	
@@ -29,15 +29,9 @@ public class Event {
 		return Attendees.add(attendee);
 	}
 	
-	public boolean setTime(Time time)
+	public boolean setTime(Date time)
 	{
 		StartTime = time;
-		return true;
-	}
-	
-	public boolean setDate(Date day)
-	{
-		date = day;
 		return true;
 	}
 	
@@ -46,14 +40,9 @@ public class Event {
 		return ID;
 	}
 	
-	public Time getTime()
+	public Date getTime()
 	{
 		return StartTime;
-	}
-	
-	public Date getDate()
-	{
-		return date;
 	}
 	
 	public ArrayList<User> getAttendees()

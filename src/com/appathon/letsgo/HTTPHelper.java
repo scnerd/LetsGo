@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
+import java.sql.Time;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -78,6 +80,10 @@ public class HTTPHelper {
 
 	}
 
+	/*
+	 * Expects
+	 * users: [ {nickName: String} {number: String} {sid: int} ]
+	 */
 	// returns the User object corresponding to the sid
 	public User GetUser(int sid) {
 		JSONObject reader = getJSONFromUrl(URL_GET_USER);
@@ -102,8 +108,23 @@ public class HTTPHelper {
 		return false;
 	}
 
-	public Event GetEvent(int eventID) {
-		return null;
+	/*
+	 * Expects
+	 * events: [ {id: String} {start: long} ]
+	 */
+	public com.appathon.letsgo.Event GetEvent(int eventID) {
+		JSONObject reader = getJSONFromUrl(URL_GET_EVNT);
+		
+		try {
+			JSONArray users = reader.getJSONArray("events");
+			for(int i = 0; i < users.length(); i++)
+				if(users.getJSONObject(i).getInt("id") == eventID)
+					return new com.appathon.letsgo.Event(
+							users.getJSONObject(i).getInt("id"),
+							new Date(users.getJSONObject(i).getInt("start")));
+		} catch (JSONException e) {
+		}
+		return com.appathon.letsgo.Event.NO_EVENT;
 	}
 
 	public boolean DeleteEvent(int eventID) {
