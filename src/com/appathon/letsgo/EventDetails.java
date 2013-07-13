@@ -7,9 +7,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class EventDetails extends Activity {
 
+	int eventID;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,10 +20,22 @@ public class EventDetails extends Activity {
 		Button button = (Button)findViewById(R.id.btn_sel_ride);
         Button b = (Button)findViewById(R.id.button2);
 		
+        eventID = savedInstanceState.getInt("event");
+        
+        Event e = HTTPHelper.GetEvent(eventID);
+
+        ((TextView)findViewById(R.id.txtDate)).setText(e.getTime().toString());
+        ((TextView)findViewById(R.id.txtLoc)).setText(e.getLocation());
+        ((TextView)findViewById(R.id.txtCost)).setText(e.getCost());
+        ((TextView)findViewById(R.id.txtPOC)).setText(e.getPOC());
+        
         button.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View arg0) {
                 Intent myIntent = new Intent(EventDetails.this, AttendanceSelect.class);
+                Bundle ex = new Bundle();
+                ex.putInt("event", eventID);
+                myIntent.putExtras(ex);
                 EventDetails.this.startActivity(myIntent);
                 // TODO Auto-generated method stub
             }
@@ -30,6 +45,9 @@ public class EventDetails extends Activity {
         	 
             public void onClick(View arg0) {
                 Intent myIntent = new Intent(EventDetails.this, AttendanceList.class);
+                Bundle ex = new Bundle();
+                ex.putInt("event", eventID);
+                myIntent.putExtras(ex);
                 EventDetails.this.startActivity(myIntent);
                 // TODO Auto-generated method stub
             }
