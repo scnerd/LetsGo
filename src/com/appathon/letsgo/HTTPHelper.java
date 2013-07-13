@@ -17,6 +17,7 @@ import android.util.Log;
 
 public class HTTPHelper {
 
+	//Need values
 	private final String URL_GET_USER = "", URL_DEL_USER = "",
 			URL_CRT_USER = "", URL_GET_EVNT = "", URL_DEL_EVNT = "",
 			URL_CRT_EVNT = "", URL_ATN_EVNT = "";
