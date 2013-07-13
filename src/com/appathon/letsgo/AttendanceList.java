@@ -26,19 +26,22 @@ public class AttendanceList extends Activity {
 		
 		try{
 		User[] attns = HTTPHelper.GetAttendees(savedInstanceState.getInt("event"));
+
+            String[] usrnames = new String[attns.length];
+            for(int i = 0; i < attns.length; i++)
+            {
+                usrnames[i] = attns[i].getNickName() + " [" + attns[i].getPhoneNumber() + "]";
+            }
+
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, usrnames);
+            ((ListView)findViewById(R.id.listView1)).setAdapter(adapter);
+
 		} catch(Exception e)
 		{
 			
 		}
 		
-		String[] usrnames = new String[attns.length];
-		for(int i = 0; i < attns.length; i++)
-		{
-			usrnames[i] = attns[i].getNickName() + " [" + attns[i].getPhoneNumber() + "]";
-		}
-		
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, usrnames);
-		((ListView)findViewById(R.id.listView1)).setAdapter(adapter);
+
 		
 	}
 

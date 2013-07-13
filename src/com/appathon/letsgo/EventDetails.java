@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class EventDetails extends Activity {
 
@@ -16,6 +17,10 @@ public class EventDetails extends Activity {
 		setContentView(R.layout.activity_event_details);
 		Button button = (Button)findViewById(R.id.btn_sel_ride);
         Button b = (Button)findViewById(R.id.button2);
+        int i = getIntent().getExtras().getInt("extra");
+        //int i = savedInstanceState.getInt("extra");
+
+        Event event = HTTPHelper.es[i];
 		
         button.setOnClickListener(new View.OnClickListener() {
  
@@ -34,7 +39,15 @@ public class EventDetails extends Activity {
                 // TODO Auto-generated method stub
             }
         });
-	}
+
+        ((TextView)findViewById(R.id.date_event_details)).setText(event.getStartTime().toString());
+        ((TextView)findViewById(R.id.cost_event_view)).setText(event.getCost().toString());
+        ((TextView)findViewById(R.id.event_location_view)).setText(event.getLocation().toString());
+        ((TextView)findViewById(R.id.time_event_view)).setText(event.getTime().toString());
+        ((TextView)findViewById(R.id.poc_event_view)).setText(event.getPOC().toString());
+
+
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
