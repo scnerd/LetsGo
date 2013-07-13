@@ -28,10 +28,10 @@ public class EventDetails extends Activity {
         
         Event e = HTTPHelper.GetEvent(eventID);
 
-        ((TextView)findViewById(R.id.txtDate)).setText(e.getTime().toString());
-        ((TextView)findViewById(R.id.txtLoc)).setText(e.getLocation());
-        ((TextView)findViewById(R.id.txtCost)).setText(e.getCost());
-        ((TextView)findViewById(R.id.txtPOC)).setText(e.getPOC());
+        ((TextView)findViewById(R.id.date_event_details)).setText(e.getTime().toString());
+        ((TextView)findViewById(R.id.event_location_view)).setText(e.getLocation());
+        ((TextView)findViewById(R.id.cost_event_view)).setText(e.getCost());
+        ((TextView)findViewById(R.id.poc_event_view)).setText(e.getPOC());
         
         button.setOnClickListener(new View.OnClickListener() {
  
