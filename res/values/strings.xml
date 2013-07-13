@@ -14,5 +14,6 @@
     <string name="submit">Submit</string>
     <string name="title_activity_attendance_select">AttendanceSelect</string>
     <string name="title_activity_attendance_list">AttendanceList</string>
+    <string name="title_activity_add_event">AddEvent</string>
 
 </resources>

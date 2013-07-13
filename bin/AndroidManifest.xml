@@ -50,6 +50,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.appathon.letsgo.LetsGo_Main" />
         </activity>
+        <activity
+            android:name="com.appathon.letsgo.AddEvent"
+            android:label="@string/title_activity_add_event" >
+        </activity>
     </application>
 
 </manifest>
