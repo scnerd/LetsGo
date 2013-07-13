@@ -5,15 +5,28 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.SimpleCursorAdapter;
 
 public class AttendanceList extends Activity {
 
+	SimpleCursorAdapter adapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_attendance_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		User[] attns = HTTPHelper.GetAttendees(savedInstanceState.getInt("event"));
+		
+		String[] usrnames = new String[attns.length];
+		for(int i = 0; i < attns.length; i++)
+		{
+			usrnames[i] = attns[i].getNickName() + " [" + attns[i].getPhoneNumber() + "]";
+		}
+		
+		
 	}
 
 	/**

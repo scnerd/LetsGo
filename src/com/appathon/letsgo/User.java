@@ -6,13 +6,13 @@ package com.appathon.letsgo;
 
 public class User {
 
-    private int SID;
+    private String SID;
 	private String NickName;
 	private String PhoneNumber;
 	
-	public final static User NO_ONE = new User("Does not exist", "(000) 000-0000", 0);
+	public final static User NO_ONE = new User("Does not exist", "(000) 000-0000", "");
 	
-	public User(String nickName, String number, int sid)
+	public User(String nickName, String number, String sid)
 	{
 		NickName = nickName;
 		PhoneNumber = number;
@@ -24,7 +24,7 @@ public class User {
         return "THIS IS A TEMPORARY VALUE";
     }
 
-    public int getSID()
+    public String getSID()
     {
         return SID;
     }
