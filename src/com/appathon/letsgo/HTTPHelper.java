@@ -1,26 +1,20 @@
 package com.appathon.letsgo;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
+import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.*;
 
 import android.util.Log;
 
@@ -34,13 +28,19 @@ public class HTTPHelper {
 	static JSONObject jObj = null;
 	static String json = "";
 
-	public JSONObject getJSONFromUrl(String url) {
+	public JSONObject getJSONFromUrl(String url, String IDName, int ID)
+			throws JSONException {
 
 		// Making HTTP request
 		try {
 			// defaultHttpClient
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(url);
+
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>(1);
+			pairs.add(new BasicNameValuePair("id", Integer.valueOf(ID)
+					.toString()));
+			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
 
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			HttpEntity httpEntity = httpResponse.getEntity();
@@ -69,11 +69,7 @@ public class HTTPHelper {
 		}
 
 		// try parse the string to a JSON object
-		try {
-			jObj = new JSONObject(json);
-		} catch (JSONException e) {
-			Log.e("JSON Parser", "Error parsing data " + e.toString());
-		}
+		jObj = new JSONObject(json);
 
 		// return JSON String
 		return jObj;
@@ -81,20 +77,19 @@ public class HTTPHelper {
 	}
 
 	/*
-	 * Expects
-	 * users: [ {nickName: String} {number: String} {sid: int} ]
+	 * Expects users: [ {nickName: String} {number: String} {sid: int} ]
 	 */
 	// returns the User object corresponding to the sid
 	public User GetUser(int sid) {
-		JSONObject reader = getJSONFromUrl(URL_GET_USER);
-		
+		JSONObject reader;
 		try {
-			JSONArray users = reader.getJSONArray("users");
-			for(int i = 0; i < users.length(); i++)
-				if(users.getJSONObject(i).getInt("sid") == sid)
-					return new User(reader.getString("nickName"), reader.getString("number"), reader.getInt("sid"));
+			reader = getJSONFromUrl(URL_GET_USER, "SID", sid);
+
+					return new User(reader.getString("NickName"),
+							reader.getString("Number"), reader.getInt("SID"));
 		} catch (JSONException e) {
 		}
+
 		return User.NO_ONE;
 	}
 
@@ -108,20 +103,12 @@ public class HTTPHelper {
 		return false;
 	}
 
-	/*
-	 * Expects
-	 * events: [ {id: String} {start: long} ]
-	 */
 	public com.appathon.letsgo.Event GetEvent(int eventID) {
-		JSONObject reader = getJSONFromUrl(URL_GET_EVNT);
-		
 		try {
-			JSONArray users = reader.getJSONArray("events");
-			for(int i = 0; i < users.length(); i++)
-				if(users.getJSONObject(i).getInt("id") == eventID)
-					return new com.appathon.letsgo.Event(
-							users.getJSONObject(i).getInt("id"),
-							new Date(users.getJSONObject(i).getInt("start")));
+			JSONObject reader = getJSONFromUrl(URL_GET_EVNT, "ID", eventID);
+					return new com.appathon.letsgo.Event(reader
+							.getInt("id"), new Date(reader
+							.getInt("start")));
 		} catch (JSONException e) {
 		}
 		return com.appathon.letsgo.Event.NO_EVENT;
