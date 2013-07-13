@@ -45,6 +45,9 @@ public class LetsGo_Main extends Activity {
         	@Override 
             public void onClick(View arg0) {
                 Intent myIntent = new Intent(LetsGo_Main.this, EventDetails.class);
+                Bundle ex = new Bundle();
+                ex.putInt("extra", 1);
+                myIntent.putExtras(ex);
                 LetsGo_Main.this.startActivity(myIntent);
                 // TODO Auto-generated method stub
             }

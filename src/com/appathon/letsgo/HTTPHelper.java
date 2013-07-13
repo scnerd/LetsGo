@@ -286,7 +286,12 @@ public class HTTPHelper {
 	 */
 	public static User[] GetAttendees(int eventID) {
 		Event e = GetEvent(eventID);
-		return (User[]) e.getAttendees().toArray();
+		User[] usrs = new User[e.getAttendees().size()];
+		for(int i = 0; i < usrs.length; i++)
+		{
+			usrs[i] = e.getAttendees().get(i);
+		}
+		return usrs;
 		/*
 		JSONObject reader;
 		try {
