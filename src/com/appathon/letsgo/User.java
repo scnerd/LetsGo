@@ -1,12 +1,17 @@
 package com.appathon.letsgo;
 
+/*
+ * User object.
+ */
+
 public class User {
 
-	String name;
-	String phoneNumber;
+	String Name;
+	String PhoneNumber;
 	
 	public User(String person, String number)
 	{
-		
+		Name = person;
+		PhoneNumber = number;
 	}
 }
