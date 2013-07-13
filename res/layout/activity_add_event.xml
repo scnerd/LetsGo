@@ -113,7 +113,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -126,8 +126,8 @@
         android:id="@+id/datePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView6"
-        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignBaseline="@+id/txtDate"
+        android:layout_alignBottom="@+id/txtDate"
         android:layout_alignLeft="@+id/timePicker1" />
 
 </RelativeLayout>
