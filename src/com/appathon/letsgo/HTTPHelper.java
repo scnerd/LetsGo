@@ -17,6 +17,22 @@ import android.util.Log;
 
 public class HTTPHelper {
 
+	/*
+	 * LIES, ALL LIES... but necessary lies for the demo
+	 */
+	static User[] us = new User[]
+			{ new User("Duke Nukem", "666", "dnukem"),
+			  new User("Captain Hammer", "13", "cphamm"),
+			  new User("Jack Sparrow", "2011", "captain"),
+			  new User("Fanx Emerson", "5", "doood")
+			};
+	static Event[] es = new Event[]
+			{ new Event(1, new Date(2013,07,12), "RM7116#203", "$10", "stokes", us),
+			  new Event(2, new Date(2013,07,15), "OPS1C", "($5000)", "DoD ;)", us),
+			  new Event(3, new Date(2075,12,25), "Ragnarok", "$5T", "Loki", us)
+			};
+
+	
 	//Need values
 	private static final String
             URL_GET_USER = "http://mphox.scripts.mit.edu/LetsGoScripts/addUser.php",
@@ -90,6 +106,16 @@ public class HTTPHelper {
 	 */
 	// returns the User object corresponding to the sid
 	public static User GetUser(String sid) {
+		//Fake code
+		for(User u : us)
+		{
+			if(u.getSID().equals(sid))
+				return u;
+		}
+		return User.NO_ONE;
+		
+		//Real code
+		/*
 		JSONObject reader;
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -102,6 +128,7 @@ public class HTTPHelper {
 		}
 
 		return User.NO_ONE;
+		*/
 	}
 
 	// deletes the User object corresponding to the sid
@@ -111,6 +138,12 @@ public class HTTPHelper {
 	 * Expects { anything if successful, nothing if failed }
 	 */
 	public static boolean DeleteUser(String sid) {
+		//Fake code
+
+		return true;
+		
+		//Real code
+		/*
 		JSONObject reader;
 
 		try {
@@ -122,6 +155,7 @@ public class HTTPHelper {
 		} catch (JSONException e) {
 		}
 		return false;
+		*/
 	}
 
 	/*
@@ -129,6 +163,8 @@ public class HTTPHelper {
 	 * Expects {anything if successful, nothing if failed}
 	 */
 	public static boolean CreateUser(User user) {
+		return true;
+		/*
 		JSONObject reader;
 
 		try {
@@ -142,6 +178,7 @@ public class HTTPHelper {
 		} catch (JSONException e) {
 		}
 		return false;
+		*/
 	}
 
 	/*
@@ -149,6 +186,16 @@ public class HTTPHelper {
 	 * Expects {ID: int} {Start: String (date)} {Location: String} {Cost: String} {POC: String}
 	 */
 	public static com.appathon.letsgo.Event GetEvent(int eventID) {
+		//Fake code
+		for(Event e : es)
+		{
+			if(e.getID() == eventID)
+				return e;
+		}
+		return Event.NO_EVENT;
+		
+		//Real code
+		/*
 		JSONObject reader;
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -161,6 +208,7 @@ public class HTTPHelper {
 		}
 
 		return Event.NO_EVENT;
+		*/
 	}
 
 	/*
@@ -168,6 +216,8 @@ public class HTTPHelper {
 	 * Expects {anything if successful, nothing if failed}
 	 */
 	public static boolean DeleteEvent(int eventID) {
+		return true;
+		/*
 		JSONObject reader;
 
 		try {
@@ -179,6 +229,7 @@ public class HTTPHelper {
 		} catch (JSONException e) {
 		}
 		return false;
+		*/
 	}
 
 	/*
