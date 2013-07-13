@@ -31,6 +31,19 @@ public class Event {
 		POC = poc;
 	}
 	
+	public Event(int id, Date start, String loc, String cost, String poc, User[] attendees)
+	{
+		ID = id;
+		StartTime = start;
+		Attendees = new ArrayList<User>();
+		Location = loc;
+		Cost = cost;
+		POC = poc;
+		
+		for(User u : attendees)
+		{ Attendees.add(u); }
+	}
+	
 	public boolean addAttendee(User attendee)
 	{
 		return Attendees.add(attendee);
