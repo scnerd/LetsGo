@@ -21,10 +21,10 @@ public class HTTPHelper {
 	 * LIES, ALL LIES... but necessary lies for the demo
 	 */
 	static User[] us = new User[]
-			{ new User("Duke Nukem", "666", "dnukem"),
-			  new User("Captain Hammer", "13", "cphamm"),
-			  new User("Jack Sparrow", "2011", "captain"),
-			  new User("Fanx Emerson", "5", "doood")
+			{ new User("Duke Nukem", "666-6666", "dnukem"),
+			  new User("Captain Hammer", "133-7589", "cphamm"),
+			  new User("Jack Sparrow", "201-1111", "captain"),
+			  new User("Fanx Emerson", "555-1234", "doood")
 			};
 	static Event[] es = new Event[]
 			{ new Event(1, new Date(2013,07,12), "RM7116#203", "$10", "stokes", us),

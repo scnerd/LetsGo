@@ -25,7 +25,7 @@ public class AttendanceList extends Activity {
 		setupActionBar();
 		User[] attns = new User[0];
 		
-		attns = HTTPHelper.GetAttendees(savedInstanceState.getInt("event"));
+		attns = HTTPHelper.GetAttendees(1);
 		
 		String[] usrnames = new String[attns.length];
 		for(int i = 0; i < attns.length; i++)

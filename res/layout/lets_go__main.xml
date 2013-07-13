@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/section_label"
             android:layout_toRightOf="@+id/section_label"
-            android:text="Button" />
+            android:text="Button"
+            android:visibility="invisible" />
 
     <ListView
             android:id="@+id/listEventItems"

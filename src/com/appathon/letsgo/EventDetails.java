@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class EventDetails extends Activity {
 
-	int eventID;
+	static int eventID;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,18 +21,18 @@ public class EventDetails extends Activity {
         Button b = (Button)findViewById(R.id.button2);
         int i = getIntent().getExtras().getInt("extra");
         //int i = savedInstanceState.getInt("extra");
-
+eventID = i;
         Event event = HTTPHelper.es[i];
 		
         /*eventID = savedInstanceState.getInt("event");
         
-
+*/
         button.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View arg0) {
                 Intent myIntent = new Intent(EventDetails.this, AttendanceSelect.class);
                 Bundle ex = new Bundle();
-                ex.putInt("event", eventID);
+                ex.putInt("event", 1);
                 myIntent.putExtras(ex);
                 EventDetails.this.startActivity(myIntent);
                 // TODO Auto-generated method stub
@@ -44,13 +44,13 @@ public class EventDetails extends Activity {
             public void onClick(View arg0) {
                 Intent myIntent = new Intent(EventDetails.this, AttendanceList.class);
                 Bundle ex = new Bundle();
-                ex.putInt("event", eventID);
+                ex.putInt("event", 1);
                 myIntent.putExtras(ex);
                 EventDetails.this.startActivity(myIntent);
                 // TODO Auto-generated method stub
             }
         });
-        */
+        
 
         ((TextView)findViewById(R.id.date_event_details)).setText(event.getStartTime().toString());
         ((TextView)findViewById(R.id.cost_event_view)).setText(event.getCost().toString());

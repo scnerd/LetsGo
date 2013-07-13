@@ -24,7 +24,7 @@ public class AttendanceSelect extends Activity {
 		setContentView(R.layout.activity_attendance_select);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		eventID = savedInstanceState.getInt("event");
+		eventID = 1; //savedInstanceState.getInt("event");
 		
 	}
 
@@ -81,9 +81,9 @@ public class AttendanceSelect extends Activity {
 		HTTPHelper.AttendEvent(HTTPHelper.GetEvent(eventID), HTTPHelper.GetUser(SID), Choice);
 		
         Intent myIntent = new Intent(AttendanceSelect.this, AttendanceList.class);
-        Bundle extra = new Bundle();
-        extra.putInt("event", eventID);
-        myIntent.putExtras(extra);
+//        Bundle extra = new Bundle();
+//        extra.putInt("event", eventID);
+//        myIntent.putExtras(extra);
         this.startActivity(myIntent);
 	}
 }
