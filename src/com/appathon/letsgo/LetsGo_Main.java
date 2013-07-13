@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +17,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LetsGo_Main extends FragmentActivity implements ActionBar.TabListener {
@@ -40,7 +43,7 @@ public class LetsGo_Main extends FragmentActivity implements ActionBar.TabListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lets_go__main);
-
+        
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -74,6 +77,16 @@ public class LetsGo_Main extends FragmentActivity implements ActionBar.TabListen
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+        Button button = (Button)findViewById(R.id.button1);
+        OnClickListener o = new View.OnClickListener() {
+        	@Override 
+            public void onClick(View arg0) {
+               /* Intent myIntent = new Intent(LetsGo_Main.this, EventDetails.class);
+                LetsGo_Main.this.startActivity(myIntent);*/
+                // TODO Auto-generated method stub
+            }
+        };
+        button.setOnClickListener(o);
     }
 
     @Override
