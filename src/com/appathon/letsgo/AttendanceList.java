@@ -24,7 +24,12 @@ public class AttendanceList extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
+		try{
 		User[] attns = HTTPHelper.GetAttendees(savedInstanceState.getInt("event"));
+		} catch(Exception e)
+		{
+			
+		}
 		
 		String[] usrnames = new String[attns.length];
 		for(int i = 0; i < attns.length; i++)
