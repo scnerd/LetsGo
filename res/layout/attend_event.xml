@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/txt_attend_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/btn_sel_ride"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txt_attend_name"
+        android:layout_below="@+id/txt_attend_name"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/btn_up_rider" />
+
+    <Button
+        android:id="@+id/btn_sel_drive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_sel_ride"
+        android:layout_alignBottom="@+id/btn_sel_ride"
+        android:layout_alignRight="@+id/txt_attend_name"
+        android:background="@drawable/btn_up_wheel" />
+
+    <Button
+        android:id="@+id/btn_sel_absent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_sel_ride"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/btn_up_refresh" />
+
+</RelativeLayout>

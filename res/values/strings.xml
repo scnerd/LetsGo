@@ -8,5 +8,9 @@
     <string name="title_section3">Section 3</string>
     <string name="title_activity_event_details">EventDetails</string>
     <string name="hello_world">Hello world!</string>
+    <string name="rd_abs_txt">Absent</string>
+    <string name="rd_att_txt">Attending</string>
+    <string name="rd_drv_txt">Driving</string>
+    <string name="submit">Submit</string>
 
 </resources>
