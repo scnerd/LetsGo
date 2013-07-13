@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 
 public class AttendanceList extends Activity {
 
-	SimpleCursorAdapter adapter;
+	ArrayAdapter<String> adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,8 @@ public class AttendanceList extends Activity {
 			usrnames[i] = attns[i].getNickName() + " [" + attns[i].getPhoneNumber() + "]";
 		}
 		
-		
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, usrnames);
+		((ListView)findViewById(R.id.listView1)).setAdapter(adapter);
 	}
 
 	/**

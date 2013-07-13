@@ -4,6 +4,7 @@ import org.apache.http.protocol.HTTP;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,6 +75,7 @@ public class AttendanceSelect extends Activity {
 	private void choice_Made(int Choice)
 	{
 		HTTPHelper.AttendEvent(HTTPHelper.GetEvent(eventID), HTTPHelper.GetUser(SID), Choice);
-		
+        Intent myIntent = new Intent(new AttendanceList(), EventDetails.class);
+        this.startActivity(myIntent);
 	}
 }
