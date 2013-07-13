@@ -2,15 +2,12 @@ package com.appathon.letsgo;
 
 import java.io.*;
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -28,7 +25,7 @@ public class HTTPHelper {
 	static JSONObject jObj = null;
 	static String json = "";
 
-	public JSONObject getJSONFromUrl(String url, String IDName, int ID)
+	public JSONObject getJSONFromUrl(String url, List<NameValuePair> pairs)
 			throws JSONException {
 
 		// Making HTTP request
@@ -37,9 +34,6 @@ public class HTTPHelper {
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(url);
 
-			List<NameValuePair> pairs = new ArrayList<NameValuePair>(1);
-			pairs.add(new BasicNameValuePair("id", Integer.valueOf(ID)
-					.toString()));
 			httpPost.setEntity(new UrlEncodedFormEntity(pairs));
 
 			HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -83,10 +77,12 @@ public class HTTPHelper {
 	public User GetUser(int sid) {
 		JSONObject reader;
 		try {
-			reader = getJSONFromUrl(URL_GET_USER, "SID", sid);
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("SID", Integer.valueOf(sid).toString()));
+			reader = getJSONFromUrl(URL_GET_USER, params);
 
-					return new User(reader.getString("NickName"),
-							reader.getString("Number"), reader.getInt("SID"));
+			return new User(reader.getString("NickName"),
+					reader.getString("Number"), reader.getInt("SID"));
 		} catch (JSONException e) {
 		}
 
@@ -96,33 +92,93 @@ public class HTTPHelper {
 	// deletes the User object corresponding to the sid
 	// returns true if User was deleted successfully, false otherwise
 	public boolean DeleteUser(int sid) {
+		JSONObject reader;
+
+		try {
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("SID", Integer.valueOf(sid).toString()));
+			reader = getJSONFromUrl(URL_DEL_USER, params);
+			if(reader.length() > 0)
+				return true;
+		} catch (JSONException e) {
+		}
 		return false;
 	}
 
 	public boolean CreateUser(User user) {
+		JSONObject reader;
+
+		try {
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("SID", Integer.valueOf(user.getSID()).toString()));
+			params.add(new BasicNameValuePair("NickName", user.getNickName()));
+			params.add(new BasicNameValuePair("Number", user.getPhoneNumber()));
+			reader = getJSONFromUrl(URL_CRT_USER, params);
+			if(reader.length() > 0)
+				return true;
+		} catch (JSONException e) {
+		}
 		return false;
 	}
 
 	public com.appathon.letsgo.Event GetEvent(int eventID) {
+		JSONObject reader;
 		try {
-			JSONObject reader = getJSONFromUrl(URL_GET_EVNT, "ID", eventID);
-					return new com.appathon.letsgo.Event(reader
-							.getInt("id"), new Date(reader
-							.getInt("start")));
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("ID", Integer.valueOf(eventID).toString()));
+			reader = getJSONFromUrl(URL_GET_EVNT, params);
+
+			return new Event(reader.getInt("ID"), Date.valueOf(reader.getString("Start")));
 		} catch (JSONException e) {
 		}
-		return com.appathon.letsgo.Event.NO_EVENT;
+
+		return Event.NO_EVENT;
 	}
 
 	public boolean DeleteEvent(int eventID) {
+		JSONObject reader;
+
+		try {
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("ID", Integer.valueOf(eventID).toString()));
+			reader = getJSONFromUrl(URL_DEL_EVNT, params);
+			if(reader.length() > 0)
+				return true;
+		} catch (JSONException e) {
+		}
 		return false;
 	}
 
 	public boolean CreateEvent(Event event) {
+		JSONObject reader;
+
+		try {
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("ID", Integer.valueOf(event.getID()).toString()));
+			params.add(new BasicNameValuePair("Start", event.getStartTime().toString()));
+			params.add(new BasicNameValuePair("Location", event.getLocation()));
+			params.add(new BasicNameValuePair("Cost", event.getCost()));
+			params.add(new BasicNameValuePair("POC", Integer.valueOf(event.getPOC()).toString()));
+			reader = getJSONFromUrl(URL_CRT_EVNT, params);
+			if(reader.length() > 0)
+				return true;
+		} catch (JSONException e) {
+		}
 		return false;
 	}
 
 	public boolean AttendEvent(Event event, User user) {
+		JSONObject reader;
+
+		try {
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("ID", Integer.valueOf(event.getID()).toString()));
+			params.add(new BasicNameValuePair("SID", Integer.valueOf(user.getSID()).toString()));
+			reader = getJSONFromUrl(URL_ATN_EVNT, params);
+			if(reader.length() > 0)
+				return true;
+		} catch (JSONException e) {
+		}
 		return false;
 	}
 }

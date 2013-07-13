@@ -13,7 +13,11 @@ public class Event {
 	
 	private int ID;
 	private Date StartTime;
+
 	private ArrayList<User> Attendees;
+	private String Location;
+	private String Cost;
+	private int POC;
 	
 	public static final Event NO_EVENT = new Event(0, new Date(0));
 	
@@ -48,5 +52,36 @@ public class Event {
 	public ArrayList<User> getAttendees()
 	{
 		return Attendees;
+	}
+
+	public int getPOC() {
+		return POC;
+	}
+
+	public void setPOC(int pOC) {
+		POC = pOC;
+	}
+
+	public String getCost() {
+		return Cost;
+	}
+
+	public void setCost(String cost) {
+		Cost = cost;
+	}
+
+	public String getLocation() {
+		return Location;
+	}
+
+	public void setLocation(String location) {
+		Location = location;
+	}
+	public Date getStartTime() {
+		return StartTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		StartTime = startTime;
 	}
 }
