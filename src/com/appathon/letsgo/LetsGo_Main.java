@@ -42,6 +42,17 @@ public class LetsGo_Main extends Activity {
             }
         };
         button.setOnClickListener(o);
+        
+        /*Button button2 = (Button)findViewById(R.id.button2);
+        OnClickListener on = new View.OnClickListener() {
+        	@Override 
+            public void onClick(View arg0) {
+                Intent myIntent = new Intent(LetsGo_Main.this, AddEvent.class);
+                LetsGo_Main.this.startActivity(myIntent);
+                // TODO Auto-generated method stub
+            }
+        };
+        button2.setOnClickListener(on);*/
     }
     
 

@@ -2,9 +2,13 @@ package com.appathon.letsgo;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -30,6 +34,7 @@ public class AttendanceList extends Activity {
 		
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, usrnames);
 		((ListView)findViewById(R.id.listView1)).setAdapter(adapter);
+		
 	}
 
 	/**

@@ -20,4 +20,15 @@
         android:layout_below="@+id/section_label"
         android:layout_toRightOf="@+id/section_label"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="58dp"
+        android:text="add event" />
+
 </RelativeLayout>

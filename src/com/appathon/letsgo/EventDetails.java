@@ -15,11 +15,21 @@ public class EventDetails extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_details);
 		Button button = (Button)findViewById(R.id.btn_sel_ride);
-        
-        button.setOnClickListener(new OnClickListener() {
+        Button b = (Button)findViewById(R.id.button2);
+		
+        button.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View arg0) {
                 Intent myIntent = new Intent(EventDetails.this, AttendanceSelect.class);
+                EventDetails.this.startActivity(myIntent);
+                // TODO Auto-generated method stub
+            }
+        });
+        
+        b.setOnClickListener(new View.OnClickListener() {
+        	 
+            public void onClick(View arg0) {
+                Intent myIntent = new Intent(EventDetails.this, AttendanceList.class);
                 EventDetails.this.startActivity(myIntent);
                 // TODO Auto-generated method stub
             }
