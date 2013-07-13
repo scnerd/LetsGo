@@ -1,13 +1,20 @@
 package com.appathon.letsgo;
 
+import org.apache.http.protocol.HTTP;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.support.v4.app.NavUtils;
 
 public class AttendanceSelect extends Activity {
 
+	String SID;
+	int eventID;
+	Bundle curBundle;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,5 +55,25 @@ public class AttendanceSelect extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void choose_Ride(View arg0)
+	{
+		choice_Made(HTTPHelper.ST_GOING);
+	}
+	
+	public void choose_Drive(View arg0)
+	{
+		choice_Made(HTTPHelper.ST_DRIVING);
+	}
+	
+	public void choose_Absent(View arg0)
+	{
+		choice_Made(HTTPHelper.ST_ABSENT);
+	}
 
+	private void choice_Made(int Choice)
+	{
+		HTTPHelper.AttendEvent(HTTPHelper.GetEvent(eventID), HTTPHelper.GetUser(SID), Choice);
+		
+	}
 }
