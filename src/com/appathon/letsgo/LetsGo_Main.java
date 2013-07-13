@@ -82,16 +82,12 @@ public class LetsGo_Main extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
+                Intent myIntent = new Intent(LetsGo_Main.this, EventDetails.class);
+                Bundle ex = new Bundle();
+                ex.putInt("extra", (position));
+                myIntent.putExtras(ex);
+                LetsGo_Main.this.startActivity(myIntent);
+
             }
 
         });
