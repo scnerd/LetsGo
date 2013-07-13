@@ -237,6 +237,8 @@ public class HTTPHelper {
 	 * Expects {anything if successful, nothing if failed}
 	 */
 	public static boolean CreateEvent(Event event) {
+		return true;
+		/*
 		JSONObject reader;
 
 		try {
@@ -252,6 +254,7 @@ public class HTTPHelper {
 		} catch (JSONException e) {
 		}
 		return false;
+		*/
 	}
 
 	/*
@@ -259,6 +262,8 @@ public class HTTPHelper {
 	 * Expects {anything if successful, nothing if failed}
 	 */
 	public static boolean AttendEvent(Event event, User user, int State) {
+		return true;
+		/*
 		JSONObject reader;
 
 		try {
@@ -272,6 +277,7 @@ public class HTTPHelper {
 		} catch (JSONException e) {
 		}
 		return false;
+		*/
 	}
 	
 	/*
@@ -279,6 +285,9 @@ public class HTTPHelper {
 	 * Expects {Attendees: [ {SID: String} ] }
 	 */
 	public static User[] GetAttendees(int eventID) {
+		Event e = GetEvent(eventID);
+		return (User[]) e.getAttendees().toArray();
+		/*
 		JSONObject reader;
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -296,5 +305,6 @@ public class HTTPHelper {
 		}
 
 		return new User[0];
+		*/
 	}
 }
