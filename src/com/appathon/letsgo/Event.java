@@ -5,6 +5,10 @@ import java.util.Date;
 
 import android.text.format.Time;
 
+/*
+ * Event object.
+ */
+
 public class Event {
 	
 	private int ID;
