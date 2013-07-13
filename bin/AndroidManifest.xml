@@ -26,6 +26,30 @@
             android:name="com.appathon.letsgo.EventDetails"
             android:label="@string/title_activity_event_details" >
         </activity>
+        <activity
+            android:name="com.appathon.letsgo.AttendanceSelect"
+            android:label="@string/title_activity_attendance_select"
+            android:parentActivityName="com.appathon.letsgo.LetsGo_Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.appathon.letsgo.LetsGo_Main" />
+        </activity>
+        <activity
+            android:name="com.appathon.letsgo.AttendanceList"
+            android:label="@string/title_activity_attendance_list"
+            android:parentActivityName="com.appathon.letsgo.LetsGo_Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.appathon.letsgo.LetsGo_Main" />
+        </activity>
+        <activity
+            android:name="com.appathon.letsgo.Settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.appathon.letsgo.LetsGo_Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.appathon.letsgo.LetsGo_Main" />
+        </activity>
     </application>
 
 </manifest>
