@@ -24,15 +24,9 @@ public class EventDetails extends Activity {
 
         Event event = HTTPHelper.es[i];
 		
-        eventID = savedInstanceState.getInt("event");
+        /*eventID = savedInstanceState.getInt("event");
         
-        Event e = HTTPHelper.GetEvent(eventID);
 
-        ((TextView)findViewById(R.id.txtDate)).setText(e.getTime().toString());
-        ((TextView)findViewById(R.id.txtLoc)).setText(e.getLocation());
-        ((TextView)findViewById(R.id.txtCost)).setText(e.getCost());
-        ((TextView)findViewById(R.id.txtPOC)).setText(e.getPOC());
-        
         button.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View arg0) {
@@ -56,6 +50,7 @@ public class EventDetails extends Activity {
                 // TODO Auto-generated method stub
             }
         });
+        */
 
         ((TextView)findViewById(R.id.date_event_details)).setText(event.getStartTime().toString());
         ((TextView)findViewById(R.id.cost_event_view)).setText(event.getCost().toString());
