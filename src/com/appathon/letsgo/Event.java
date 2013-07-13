@@ -3,13 +3,15 @@ package com.appathon.letsgo;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.format.Time;
 
 /*
  * Event object.
  */
 
-public class Event {
+public class Event implements Parcelable{
 	
 	private int ID;
 	private Date StartTime;
@@ -18,6 +20,8 @@ public class Event {
 	private String Location;
 	private String Cost;
 	private String POC;
+
+    private int mData;
 	
 	public static final Event NO_EVENT = new Event(0, new Date(0), "", "", "");
 	
@@ -100,4 +104,28 @@ public class Event {
 	public void setStartTime(Date startTime) {
 		StartTime = startTime;
 	}
+
+
+    public int describeContents(){
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags){
+        out.writeInt(mData);
+    }
+
+    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
+
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Event(Parcel in) {
+        mData = in.readInt();
+    }
 }
