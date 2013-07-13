@@ -20,6 +20,11 @@ public class HTTPHelper {
 	private final String URL_GET_USER = "", URL_DEL_USER = "",
 			URL_CRT_USER = "", URL_GET_EVNT = "", URL_DEL_EVNT = "",
 			URL_CRT_EVNT = "", URL_ATN_EVNT = "";
+	
+	public static final int
+		ST_ABSENT = 0,
+		ST_GOING  = 1,
+		ST_DRIVING = 2;
 
 	static InputStream is = null;
 	static JSONObject jObj = null;
@@ -167,13 +172,14 @@ public class HTTPHelper {
 		return false;
 	}
 
-	public boolean AttendEvent(Event event, User user) {
+	public boolean AttendEvent(Event event, User user, int State) {
 		JSONObject reader;
 
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("ID", Integer.valueOf(event.getID()).toString()));
 			params.add(new BasicNameValuePair("SID", Integer.valueOf(user.getSID()).toString()));
+			params.add(new BasicNameValuePair("Driving", Integer.valueOf(State).toString()));
 			reader = getJSONFromUrl(URL_ATN_EVNT, params);
 			if(reader.length() > 0)
 				return true;
