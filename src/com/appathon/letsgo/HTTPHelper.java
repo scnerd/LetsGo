@@ -80,7 +80,7 @@ public class HTTPHelper {
 	 * Expects users: [ {nickName: String} {number: String} {sid: int} ]
 	 */
 	// returns the User object corresponding to the sid
-	public static User GetUser(int sid) {
+	public static User GetUser(String sid) {
 		JSONObject reader;
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -88,7 +88,7 @@ public class HTTPHelper {
 			reader = getJSONFromUrl(URL_GET_USER, params);
 
 			return new User(reader.getString("NickName"),
-					reader.getString("Number"), reader.getInt("SID"));
+					reader.getString("Number"), reader.getString("SID"));
 		} catch (JSONException e) {
 		}
 
@@ -97,12 +97,12 @@ public class HTTPHelper {
 
 	// deletes the User object corresponding to the sid
 	// returns true if User was deleted successfully, false otherwise
-	public static boolean DeleteUser(int sid) {
+	public static boolean DeleteUser(String sid) {
 		JSONObject reader;
 
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("SID", Integer.valueOf(sid).toString()));
+			params.add(new BasicNameValuePair("SID", sid));
 			reader = getJSONFromUrl(URL_DEL_USER, params);
 			if(reader.length() > 0)
 				return true;
@@ -116,7 +116,7 @@ public class HTTPHelper {
 
 		try {
 			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("SID", Integer.valueOf(user.getSID()).toString()));
+			params.add(new BasicNameValuePair("SID", user.getSID()));
 			params.add(new BasicNameValuePair("NickName", user.getNickName()));
 			params.add(new BasicNameValuePair("Number", user.getPhoneNumber()));
 			reader = getJSONFromUrl(URL_CRT_USER, params);
@@ -134,7 +134,8 @@ public class HTTPHelper {
 			params.add(new BasicNameValuePair("ID", Integer.valueOf(eventID).toString()));
 			reader = getJSONFromUrl(URL_GET_EVNT, params);
 
-			return new Event(reader.getInt("ID"), Date.valueOf(reader.getString("Start")));
+			return new Event(reader.getInt("ID"), Date.valueOf(reader.getString("Start")),
+					reader.getString("Location"), reader.getString("Cost"), reader.getString("POC"));
 		} catch (JSONException e) {
 		}
 
@@ -164,7 +165,7 @@ public class HTTPHelper {
 			params.add(new BasicNameValuePair("Start", event.getStartTime().toString()));
 			params.add(new BasicNameValuePair("Location", event.getLocation()));
 			params.add(new BasicNameValuePair("Cost", event.getCost()));
-			params.add(new BasicNameValuePair("POC", Integer.valueOf(event.getPOC()).toString()));
+			params.add(new BasicNameValuePair("POC", event.getPOC()));
 			reader = getJSONFromUrl(URL_CRT_EVNT, params);
 			if(reader.length() > 0)
 				return true;
@@ -200,7 +201,7 @@ public class HTTPHelper {
 			//Loop through the JSON array, and query for each user who is attending
 			User[] attns_info = new User[attns.length()];
 			for(int i = 0; i < attns.length(); i++) {
-				attns_info[i] = GetUser(attns.getJSONObject(i).getInt("SID"));
+				attns_info[i] = GetUser(attns.getJSONObject(i).getString("SID"));
 			}
 			return attns_info;
 		} catch (JSONException e) {

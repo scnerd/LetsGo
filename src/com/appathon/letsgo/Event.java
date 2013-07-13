@@ -17,15 +17,18 @@ public class Event {
 	private ArrayList<User> Attendees;
 	private String Location;
 	private String Cost;
-	private int POC;
+	private String POC;
 	
-	public static final Event NO_EVENT = new Event(0, new Date(0));
+	public static final Event NO_EVENT = new Event(0, new Date(0), "", "", "");
 	
-	public Event(int id, Date start)
+	public Event(int id, Date start, String loc, String cost, String poc)
 	{
 		ID = id;
 		StartTime = start;
 		Attendees = new ArrayList<User>();
+		Location = loc;
+		Cost = cost;
+		POC = poc;
 	}
 	
 	public boolean addAttendee(User attendee)
@@ -54,11 +57,11 @@ public class Event {
 		return Attendees;
 	}
 
-	public int getPOC() {
+	public String getPOC() {
 		return POC;
 	}
 
-	public void setPOC(int pOC) {
+	public void setPOC(String pOC) {
 		POC = pOC;
 	}
 
